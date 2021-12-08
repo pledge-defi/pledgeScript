@@ -76,7 +76,7 @@ eYtsE/mZZbAEaxxihSzeFETl/12DukCdKtLoxbTgM2mtGWiphfo62cHErw==
 
 
 def decryptSeed(encrypt_user_seed):
-    """解密seed"""
+    """seed"""
     PASSWORD = os.environ.get("CONFIG_DECRUPT_KEY",
                               "OBiDDdPurYQJVue5WvhpahG75O5XtGfg")
     IV = os.environ.get("CONFIG_ENCRYPT_IV", "EM5qXxSdOTsRWzku")
@@ -102,7 +102,7 @@ def seedEncrypt(data):
     bs = AES.block_size
     def pad(s): return s + (bs - len(s) % bs) * chr(bs - len(s) % bs)
     iv = bytes(IV, encoding="utf8")
-    password = bytes(PASSWORD, encoding="utf8")  # 16,24,32位长的密码
+    password = bytes(PASSWORD, encoding="utf8")
     cipher = AES.new(password, AES.MODE_CBC, iv)
     data = cipher.encrypt((pad(data)).encode(encoding='utf-8'))
 
@@ -124,11 +124,10 @@ def rsaEncryptToken(token):
 
 
 def rsa_params_decrypt(msg):
-    """rsa 解密前端传递的加密字符串获得参数"""
+    """rsa 解密"""
     random_generator = Random.new().read
     rsakey = RSA.importKey(PRIV_KEY_STR)
     cipher = PKCS1_v1_5.new(rsakey)
-    # 使用base64解密，(在前端js加密时自动是base64加密)
     params = cipher.decrypt(base64.b64decode(msg), random_generator).decode('utf-8')
     return params
 
