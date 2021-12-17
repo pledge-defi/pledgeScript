@@ -16,33 +16,33 @@ class Config(object):
     JOBS = [
         # settle
         {
-            'id': 'base.get_latest_block.job',
+            'id': 'base.settle.job',
             'func': 'app.bsc.tasks:settle',
             'args': (),
             'trigger': 'interval',
-            'seconds': 30,
+            'seconds': 60,
             'replace_existing': True,
             'coalesce': True,
             'misfire_grace_time': 1,
         },
         # finish
         {
-            'id': 'base.get_latest_block.job',
+            'id': 'base.finish.job',
             'func': 'app.bsc.tasks:finish',
             'args': (),
             'trigger': 'interval',
-            'seconds': 30,
+            'seconds': 65,
             'replace_existing': True,
             'coalesce': True,
             'misfire_grace_time': 1,
         },
         # liquidate
         {
-            'id': 'base.get_latest_block.job',
+            'id': 'base.liquidate.job',
             'func': 'app.bsc.tasks:liquidate',
             'args': (),
             'trigger': 'interval',
-            'seconds': 10,
+            'seconds': 61,
             'replace_existing': True,
             'coalesce': True,
             'misfire_grace_time': 1,

@@ -1,6 +1,6 @@
 import logging
 import atexit
-# import fcntl
+import fcntl
 from flask import Flask
 from flask_apscheduler import APScheduler
 from flask_environments import Environments
@@ -40,7 +40,7 @@ def create_app_api():
 
     f = open("scheduler.lock", "wb")
     try:
-        # fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
         scheduler = APScheduler()
         scheduler.api_enabled = True
         scheduler.init_app(app)
@@ -49,11 +49,11 @@ def create_app_api():
         logging.info(f"script is error {str(e)}")
         pass
 
-    # def unlock():
-    #     fcntl.flock(f, fcntl.LOCK_UN)
-    #     f.close()
-    #
-    # atexit.register(unlock)
+    def unlock():
+        fcntl.flock(f, fcntl.LOCK_UN)
+        f.close()
+
+    atexit.register(unlock)
     return app, api
 
 

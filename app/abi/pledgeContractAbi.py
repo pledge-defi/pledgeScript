@@ -373,19 +373,6 @@ pledgeAbi = """[
   },
   {
     "inputs": [],
-    "name": "autoLiquidateThreshold",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "borrowFee",
     "outputs": [
       {
@@ -484,7 +471,7 @@ pledgeAbi = """[
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_matchTime",
+        "name": "_settleTime",
         "type": "uint256"
       },
       {
@@ -504,7 +491,7 @@ pledgeAbi = """[
       },
       {
         "internalType": "uint256",
-        "name": "_pledgeRate",
+        "name": "_martgageRate",
         "type": "uint256"
       },
       {
@@ -526,6 +513,11 @@ pledgeAbi = """[
         "internalType": "address",
         "name": "_jpToken",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_autoLiquidateThreshold",
+        "type": "uint256"
       }
     ],
     "name": "createPoolInfo",
@@ -666,6 +658,19 @@ pledgeAbi = """[
   },
   {
     "inputs": [],
+    "name": "globalPaused",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "lendFee",
     "outputs": [
       {
@@ -688,6 +693,19 @@ pledgeAbi = """[
     "name": "liquidate",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "minAmount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -717,19 +735,6 @@ pledgeAbi = """[
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "paused",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -741,7 +746,7 @@ pledgeAbi = """[
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "matchTime",
+        "name": "settleTime",
         "type": "uint256"
       },
       {
@@ -771,7 +776,7 @@ pledgeAbi = """[
       },
       {
         "internalType": "uint256",
-        "name": "pledgeRate",
+        "name": "martgageRate",
         "type": "uint256"
       },
       {
@@ -798,6 +803,11 @@ pledgeAbi = """[
         "internalType": "contract IDebtToken",
         "name": "jpCoin",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "autoLiquidateThreshold",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -815,32 +825,32 @@ pledgeAbi = """[
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "settleAmount0",
+        "name": "settleAmountLend",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "settleAmount1",
+        "name": "settleAmountBorrow",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "finishAmount0",
+        "name": "finishAmountLend",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "finishAmount1",
+        "name": "finishAmountBorrow",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "liquidationAmoun0",
+        "name": "liquidationAmounLend",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "liquidationAmoun1",
+        "name": "liquidationAmounBorrow",
         "type": "uint256"
       }
     ],
@@ -925,6 +935,19 @@ pledgeAbi = """[
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_minAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "setMinAmount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "setPause",
     "outputs": [],
@@ -999,6 +1022,11 @@ pledgeAbi = """[
         "internalType": "uint256",
         "name": "_maxSupply",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_autoLiquidateThreshold",
+        "type": "uint256"
       }
     ],
     "name": "updatePoolBaseInfo",
@@ -1033,12 +1061,12 @@ pledgeAbi = """[
       },
       {
         "internalType": "bool",
-        "name": "refundFlag",
+        "name": "hasNoRefund",
         "type": "bool"
       },
       {
         "internalType": "bool",
-        "name": "claimFlag",
+        "name": "hasNoClaim",
         "type": "bool"
       }
     ],
@@ -1072,12 +1100,12 @@ pledgeAbi = """[
       },
       {
         "internalType": "bool",
-        "name": "refundFlag",
+        "name": "hasNoRefund",
         "type": "bool"
       },
       {
         "internalType": "bool",
-        "name": "claimFlag",
+        "name": "hasNoClaim",
         "type": "bool"
       }
     ],

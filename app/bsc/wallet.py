@@ -13,13 +13,13 @@ from app.abi.pledgeContractAbi import pledgeAbi
 class BscWallet(object):
     """Bep20 wallet node"""
 
-    PLEDGE_CONTRACT_ADDRESS = os.environ.get('PLEDGE_CONTRACT_ADDRESS','0xe4E98E56B855cf3D1D9693FBAaC3A5e6fDCB53f5')
+    PLEDGE_CONTRACT_ADDRESS = os.environ.get('PLEDGE_CONTRACT_ADDRESS','0x08A5125C84C3DAb4834A28e73A35F4b6d895E7AA')
     PLEDGE_CONTRACT_ABI = pledgeAbi
     # network id
     CHAIN_ID = int(os.environ.get("BEP20_CHAIN_ID", 97))  # 56
     # Manage account address
-    FINANCE_ADDRESS = "0x0ff66Eb23C511ABd86fC676CE025Ca12caB2d5d4"
-    FINANCE_ADDRESS_SERECT = ""
+    FINANCE_ADDRESS = os.environ.get('FINANCE_ADDRESS','0x08A5125C84C3DAb4834A28e73A35F4b6d895E7AA')
+    FINANCE_ADDRESS_SERECT = os.environ.get('FINANCE_ADDRESS_SERECT','deb3c81d1db67ec23671e3ea648348e716a09a541de54315cf5df362a02666d3')
 
     # GAS LIMIT
     GAS_LIMIT = int(os.environ.get('BEP20_GAS_LIMIT', 200000))
@@ -54,6 +54,11 @@ class BscWallet(object):
         """Get account nonce value"""
         nonce = self.w3.eth.getTransactionCount(address, 'pending')
         return nonce
+
+    def getPoolState(self, index):
+        """get pool state"""
+        state = self.token_contract.functions.getPoolState(index).call()
+        return state
 
     def getPoolLength(self):
         """get pool lenght"""
