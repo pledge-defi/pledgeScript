@@ -284,6 +284,82 @@ pledgeAbi = """[
             {
                 "indexed":true,
                 "internalType":"uint256",
+                "name":"newLendFee",
+                "type":"uint256"
+            },
+            {
+                "indexed":true,
+                "internalType":"uint256",
+                "name":"newBorrowFee",
+                "type":"uint256"
+            }
+        ],
+        "name":"SetFee",
+        "type":"event"
+    },
+    {
+        "anonymous":false,
+        "inputs":[
+            {
+                "indexed":true,
+                "internalType":"address",
+                "name":"oldFeeAddress",
+                "type":"address"
+            },
+            {
+                "indexed":true,
+                "internalType":"address",
+                "name":"newFeeAddress",
+                "type":"address"
+            }
+        ],
+        "name":"SetFeeAddress",
+        "type":"event"
+    },
+    {
+        "anonymous":false,
+        "inputs":[
+            {
+                "indexed":true,
+                "internalType":"uint256",
+                "name":"oldMinAmount",
+                "type":"uint256"
+            },
+            {
+                "indexed":true,
+                "internalType":"uint256",
+                "name":"newMinAmount",
+                "type":"uint256"
+            }
+        ],
+        "name":"SetMinAmount",
+        "type":"event"
+    },
+    {
+        "anonymous":false,
+        "inputs":[
+            {
+                "indexed":true,
+                "internalType":"address",
+                "name":"oldSwapAddress",
+                "type":"address"
+            },
+            {
+                "indexed":true,
+                "internalType":"address",
+                "name":"newSwapAddress",
+                "type":"address"
+            }
+        ],
+        "name":"SetSwapRouterAddress",
+        "type":"event"
+    },
+    {
+        "anonymous":false,
+        "inputs":[
+            {
+                "indexed":true,
+                "internalType":"uint256",
                 "name":"pid",
                 "type":"uint256"
             },
@@ -568,11 +644,6 @@ pledgeAbi = """[
             {
                 "internalType":"uint256",
                 "name":"_stakeAmount",
-                "type":"uint256"
-            },
-            {
-                "internalType":"uint256",
-                "name":"_deadLine",
                 "type":"uint256"
             }
         ],
@@ -1094,36 +1165,6 @@ pledgeAbi = """[
     {
         "inputs":[
             {
-                "internalType":"uint256",
-                "name":"_pid",
-                "type":"uint256"
-            },
-            {
-                "internalType":"uint64",
-                "name":"_interestRate",
-                "type":"uint64"
-            },
-            {
-                "internalType":"uint256",
-                "name":"_maxSupply",
-                "type":"uint256"
-            },
-            {
-                "internalType":"uint256",
-                "name":"_autoLiquidateThreshold",
-                "type":"uint256"
-            }
-        ],
-        "name":"updatePoolBaseInfo",
-        "outputs":[
-
-        ],
-        "stateMutability":"nonpayable",
-        "type":"function"
-    },
-    {
-        "inputs":[
-            {
                 "internalType":"address",
                 "name":"",
                 "type":"address"
@@ -1209,11 +1250,6 @@ pledgeAbi = """[
             {
                 "internalType":"uint256",
                 "name":"_jpAmount",
-                "type":"uint256"
-            },
-            {
-                "internalType":"uint256",
-                "name":"_deadLine",
                 "type":"uint256"
             }
         ],
