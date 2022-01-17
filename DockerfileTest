@@ -25,6 +25,6 @@ WORKDIR /code
 RUN pip install --upgrade pip setuptools==45.2.0
 RUN pip install -r requirements.txt 
 RUN chmod +x start_service.sh
-EXPOSE 58480
+EXPOSE 58482
 
 CMD ["./start_service.sh"]
