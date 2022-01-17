@@ -10,10 +10,10 @@ if __name__ == "__main__":
     gevent.monkey.patch_all()
 
     acclog = logging.getLogger('gunicorn.access')
-    acclog.addHandler(WatchedFileHandler('/logs/pyservice_log/pyservice_access.log'))
+    acclog.addHandler(WatchedFileHandler('/internal-test-logs/pyservice_log/pyservice_access.log'))
     acclog.propagate = False
     errlog = logging.getLogger('gunicorn.error')
-    errlog.addHandler(WatchedFileHandler('/logs/pyservice_log/pyservice_error.log'))
+    errlog.addHandler(WatchedFileHandler('/internal-test-logs/pyservice_log/pyservice_error.log'))
     errlog.propagate = False
 
     app.run()
